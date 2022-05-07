@@ -5,32 +5,22 @@ namespace GameCsharp
 {
   class Program
   {
-    static void Update(Character[] allies, Character[] enemies)
-    {
-        Console.WriteLine("Allies:");
-        foreach(var element in allies)
-        {
-          Console.WriteLine(element);
-        }
-
-        Console.WriteLine("Enemies Alive");
-        foreach (var element in enemies)
-        {
-          Console.WriteLine(element);
-        }
-    }
     static void Main(string[] args)
     {
-      Warrior hero = new Warrior("Arus", 12, "Long Sword");
-      Wizard anna = new Wizard("anna", 15, "Ancient Staff");
-      Bandit enemy1 = new Bandit("Boris", 21, "Dagger");
+        Warrior john = new Warrior("john");
+        Warrior blake = new Warrior("Blake");
+        Wizard zoe = new Wizard("Zoe");
 
-      Character[] allies = {hero, anna};
-      Character[] enemies = {enemy1};
+        Console.WriteLine(john);
+        Console.WriteLine(zoe);
 
-      Update(allies, enemies);
-      hero.PierceAttack(enemy1);
-      
+        john.Attack(zoe);
+        john.Experience += 70;
+        Console.WriteLine(john.Experience);
+
+        john.Experience += 21;
+        john.Experience += 21;
+        Console.WriteLine(john.Experience);
     }
   }
 }

@@ -1,43 +1,38 @@
 namespace GameCsharp.Entities
 {
-    public class Wizard : Character
+    public class Wizard : Hero
     {
-      public Wizard(string Name, int Level, string Weapon)
-      {
-        this.Name = Name;
-        this.Level = Level;
-        this.Weapon = Weapon;
-        this.ClassType = "wizard";
-        this.Atk += 25;
-        this.Hp += 25;
-        this.Mp += 100;
-      }
+        public Wizard(string Name)
+        {
+            this.Name = Name;
+            base.Hp = 20;
+            base.Mp = 30;
+            base.Atk = 12;
+        }
 
-      public Wizard(){}
+        public void ConjurarMagiaDeFogo(Character target)
+        {
+            int custo = 10;
+            float poder = this.Atk * 1.2f;
 
-      public void Heal()
-      {
-        this.Mp -= 20;
-        this.Hp += 20;
-        Console.WriteLine(this.Name + " se curou");
-      }
-      public void Heal(Character target)
-      {
-        this.Mp -= 20;
-        Console.WriteLine($"{this.Name} curou {target.Name}");
-        
-        target.Hp += 20;
-        Console.WriteLine($"{target.Name} recuperou 20 HP");
-      }
+            if(this.Mp < custo )
+            {
+                Console.WriteLine("Mana insuficiente para conjurar magia");
+                return;
+            }
 
-      public void FireBall(Character target)
-      {
-        this.Mp -= 30;
-        Console.WriteLine($"{this.Name} conjurou Bola de Fogo!");
-        
-        target.Hp -= 55;
-        Console.WriteLine($"{target.Name} sofreu 50 de Dano");
-      }
-      
+            this.Mp -= custo;
+
+            if(target.Hp <= (int)poder)
+            {
+                target.Hp = 0;
+            } 
+            else
+            {
+                target.Hp -= (int)poder;
+                Console.WriteLine($"{target.Name} sofreu {(int)poder} de dano");
+            }
+        }
+
     }
 }
