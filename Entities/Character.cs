@@ -1,35 +1,45 @@
 using GameCsharp.Interfaces;
+using System.Collections.Generic;
 
 namespace GameCsharp.Entities
 {
-    public abstract class Character : ICharacter
+  public abstract class Character : ICharacter
+  {
+    public string? Name { get; set; }
+    public int Level { get; set; } = 0;
+    public int Health { get; set; }
+    public int Strength { get; set; }
+
+    // public List<Skill> Skills { get; set; }
+
+    public override string ToString()
     {
-        public string Name { get; set; }
-        public int Level { get; set; } = 0;
-        public int Hp { get; set; }
-        public int Atk { get; set; }
-        public int Mp { get; set;}
+      var info = 
+      @$"
+      --------------------------------
+      Name: {this.Name}
+      Health: {this.Health}
+      Strength: {this.Strength}
+      --------------------------------";
 
-        public override string ToString()
-        {
-            return $"Name: {this.Name}| Level: {this.Level}| HP: {this.Hp}| MP: {this.Mp}| ATK: {this.Atk}";
-        }
-
-        public virtual void Attack(Character target)
-        {
-            Console.WriteLine($"{this.Name} Disparou um ataque contra {target.Name}");
-
-            if(target.Hp <= this.Atk)
-            {
-                target.Hp = 0;
-            } 
-            else
-            {
-                target.Hp -= this.Atk;
-                int dano = target.Hp -= this.Atk;
-                Console.WriteLine($"{target.Name} sofreu {dano} de dano");
-            }
-        }
-
+      return info.Trim(' ');
     }
+
+    public virtual void Attack(Character target)
+    {
+      Console.WriteLine($"{this.Name} Disparou um ataque contra {target.Name}");
+
+      if (target.Health <= this.Strength)
+      {
+        target.Health = 0;
+      }
+      else
+      {
+        target.Health -= this.Strength;
+        int dano = target.Health -= this.Strength;
+        Console.WriteLine($"{target.Name} sofreu {dano} de dano");
+      }
+    }
+
+  }
 }

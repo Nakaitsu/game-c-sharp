@@ -5,15 +5,15 @@ namespace GameCsharp.Entities
         public Wizard(string Name)
         {
             this.Name = Name;
-            base.Hp = 20;
+            base.Health = 20;
             base.Mp = 30;
-            base.Atk = 12;
+            base.Strength = 12;
         }
 
         public void ConjurarMagiaDeFogo(Character target)
         {
             int custo = 10;
-            float poder = this.Atk * 1.2f;
+            float poder = this.Strength * 1.2f;
 
             if(this.Mp < custo )
             {
@@ -23,13 +23,13 @@ namespace GameCsharp.Entities
 
             this.Mp -= custo;
 
-            if(target.Hp <= (int)poder)
+            if(target.Health <= (int)poder)
             {
-                target.Hp = 0;
+                target.Health = 0;
             } 
             else
             {
-                target.Hp -= (int)poder;
+                target.Health -= (int)poder;
                 Console.WriteLine($"{target.Name} sofreu {(int)poder} de dano");
             }
         }

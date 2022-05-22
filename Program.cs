@@ -1,26 +1,22 @@
-﻿using System;
-using GameCsharp.Entities;
+﻿using GameCsharp.Entities;
 
 namespace GameCsharp
 {
   class Program
   {
     static void Main(string[] args)
-    {
-        Warrior john = new Warrior("john");
-        Warrior blake = new Warrior("Blake");
-        Wizard zoe = new Wizard("Zoe");
+    {     
+      Hero mark = new Warrior("Mark");
+      Hero emilia = new Wizard("Emilia");
+      Enemy slime1 = new Slime("Green Slime", 1);
 
-        Console.WriteLine(john);
-        Console.WriteLine(zoe);
+      Hero[] heroes = {mark, emilia};
+      Enemy[] enemies = {slime1};
 
-        john.Attack(zoe);
-        john.Experience += 70;
-        Console.WriteLine(john.Experience);
+      Battle battle = new Battle(heroes, enemies);
 
-        john.Experience += 21;
-        john.Experience += 21;
-        Console.WriteLine(john.Experience);
+      System.Console.WriteLine(mark);
+
     }
   }
 }
